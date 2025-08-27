@@ -33,7 +33,7 @@
     }
 
     input:focus {
-        border-color: #4a90e2;
+        border-color: #16c8ce;
         outline: none;
         background-color: #fff;
     }
@@ -60,10 +60,16 @@
        }
 
 
+    button:hover {
+        background-color: #357abd;
+    }
 
-button:hover {
-    background-color: #357abd;
-}
+    #radio-container{
+        display: flex;
+        width: 50px;
+    }
+
+
     </style>
 </head>
 <body>
@@ -83,6 +89,38 @@ button:hover {
             placeholder="Digite o seu email" 
             required maxlength="50" autocomplete="on">
         </div>
+
+        <div>
+            <label for="nascimento">Data de Nascimento</label>
+            <input type="date" name="nascimento" id="nascimento">
+        </div>
+
+        <div>
+            <label for="turma">Turma</label>
+            <select name="turma" id="turma">
+                <option value="" selected>Selecione sua Turma</option>
+                <option value="turma01">01</option>
+                <option value="turma02">02</option>
+                <option value="turma03">03</option>
+                <option value="turma04">04</option>
+            </select>
+        </div>
+
+        <div id="radio-container">
+            <input type="radio" name="sexo" id="masculino" value="m">
+            <label for="masculino">Masculino</label>
+        </div>
+        <div id = "radio-container">
+            <input type="radio" name="sexo" id="feminino" value="f">
+            <label for="masculino">Feminino</label>
+        </div>
+        <div id = "radio-container">
+            <input type="radio" name="sexo" id="outro" value="o">
+            <label for="masculino">Outro</label>
+        </div>
+
+
+
         <div>
             <label for="senha"> Senha </label>
             <input type="password" name="senha" id="senha"
@@ -105,13 +143,61 @@ button:hover {
     </form>
 
     <script>
+
+        let inputNome = document.getElementById('nome');
+        let inputEmail = document.getElementById('email');
+        let inputNascimento = document.getElementById('nascimento');
+        let inputSenha = document.getElementById('senha');
+        let inputConfSenha = document.getElementById('confirmasenha');
+
+        inputNome.addEventListener('input', function(){
+            inputNome.classList.remove('borda-erro');
+        })
+
+        inputEmail.addEventListener('input', function(){
+            inputEmail.classList.remove('borda-erro');
+        })
+
+        inputNascimento.addEventListener('input', function(){
+            inputNascimento.classList.remove('borda-erro');
+        })
+
+        inputSenha.addEventListener('input', function(){
+            inputSenha.classList.remove('borda-erro');
+        })
+
+        inputConfSenha.addEventListener('input', function(){
+            inputConfSenha.classList.remove('borda-erro');
+        })
+
         function enviarform(){
 
             let nome = document.getElementById('nome').value;
             let email = document.getElementById('email').value;
+
+            let dataNascimento = document.getElementById('nascimento').value;
+            let turma = document.getElementById('turma').value;
+
             let senha = document.getElementById('senha').value;
             let confirmasenha = document.getElementById('confirmasenha').value;
 
+            let radios = document.getElementsByName('sexo');
+
+            for (let i = 0; i <radios.length; i++){
+                if(radios[i].checked){
+                    sexo = radios[i].value;
+                    break
+                }
+            }
+
+            alert(sexo);
+
+            if(!maiorDeIdade(dataNascimento)){
+                //alert("menor de idade")
+                document.getElementById('nascimento').classList.add('border-erro')
+            }else {
+                alert("maior de idade")
+            }
 
             if(senha.length === 0 || confirmasenha.length === 0){
                 document.getElementById('senha').classList.add('borda-erro');
@@ -119,10 +205,17 @@ button:hover {
             
             if(senha !== confirmasenha){
                 alert("As senhas não são iguais!");
-            } else {
-                alert("Formulário enviado com sucesso!");
             }
             
+        }
+        function maiorDeIdade(data){
+            if(!data) return false;
+
+            let hoje = new Data();
+            let nascimento = new Data(data);
+
+            let idade = hoje.getFullYear() - nascimento.getFullYear();
+            let 
         }
 
     </script>
