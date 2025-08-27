@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+    <style>
+       body {
+        font-family: 'Poppins', sans-serif;
+        max-width: 200px;
+        margin: auto;
+        background-color: #fafafa;
+        color: #333;
+    }
+
+    label {
+        display: block;
+        margin-top: 10px;
+        font-weight: 500;
+    }
+
+    input {
+        width: 100%;
+        padding: 8px 10px;
+        margin-top: 5px;
+        border: 1.5px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: border-color 0.3s ease;
+        background-color: #fff;
+    }
+
+    input:focus {
+        border-color: #4a90e2;
+        outline: none;
+        background-color: #fff;
+    }
+
+    button {
+        display: block;
+        margin-top: 15px;
+        width: 224px;
+        padding: 10px;
+        background-color: #4a90e2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 15px;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    button:hover {
+        background-color: #357abd;
+    }
+       .borda-erro{
+        border: solid 2px red;
+       }
+
+
+
+button:hover {
+    background-color: #357abd;
+}
+    </style>
+</head>
+<body>
+    <h1>Formulário</h1>
+    <h2>Cadastro do Usuário</h2>
+    <form action="" id="usuario-form" nome="usuario-form">
+        <div>
+            <label for="nome">Nome</label>
+            <input type="text" name="nome" id="nome" 
+            placeholder="Digite o seu nome" 
+            required maxlength="50" autocomplete="on">
+        </div>
+
+        <div>
+            <label for="email"> E-mail </label>
+            <input type="email" name="email" id="email"
+            placeholder="Digite o seu email" 
+            required maxlength="50" autocomplete="on">
+        </div>
+        <div>
+            <label for="senha"> Senha </label>
+            <input type="password" name="senha" id="senha"
+            placeholder="Digite a sua senha" 
+            required minlength="6" maxlength="50" autocomplete="on">
+
+        </div>
+        <div>
+            <label for="confirmasenha"> Confirmar Senha </label>
+            <input type="password" name="confirmasenha" id="confirmasenha"
+            placeholder="Confirmar Senha" 
+            required minlength="6" maxlength="50" autocomplete="on">
+
+        </div>
+        <div>
+            <button name="botao-enviar" type="button" onclick="enviarform()"> Enviar </button> 
+        </div>
+
+
+    </form>
+
+    <script>
+        function enviarform(){
+
+            let nome = document.getElementById('nome').value;
+            let email = document.getElementById('email').value;
+            let senha = document.getElementById('senha').value;
+            let confirmasenha = document.getElementById('confirmasenha').value;
+
+
+            if(senha.length === 0 || confirmasenha.length === 0){
+                document.getElementById('senha').classList.add('borda-erro');
+            }
+            
+            if(senha !== confirmasenha){
+                alert("As senhas não são iguais!");
+            } else {
+                alert("Formulário enviado com sucesso!");
+            }
+            
+        }
+
+    </script>
+</body>
+</html>
